@@ -36,9 +36,6 @@ provider:
         - dynamodb:DeleteItem
       Resource: "arn:aws:dynamodb:us-east-1:*:*"
 
-resources:
-  - ${file(resources/api-gateway-errors.yml)}
-
 functions:
   # hello:
   #   handler: handler.hello
@@ -99,3 +96,8 @@ functions:
           method: post
           cors: true
           authorizer: aws_iam
+
+# Create our resources with separate CloudFormation templates
+resources:
+  # API Gateway Errors
+  - ${file(resources/api-gateway-errors.yml)}
